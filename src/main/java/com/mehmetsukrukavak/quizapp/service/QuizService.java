@@ -63,4 +63,16 @@ public class QuizService {
         }
         return new ResponseEntity<>(right, HttpStatus.OK);
     }
+
+    public ResponseEntity<String> createQuizWithoutCategory(int numQ, String title) {
+        List<Question> questionList = questionRepository.findRandomQuestions(numQ);
+
+        Quiz quiz = new Quiz();
+        quiz.setTitle(title);
+        quiz.setQuestions(questionList);
+
+        quizRepository.save(quiz);
+
+        return new ResponseEntity<>("Quiz created",HttpStatus.CREATED);
+    }
 }

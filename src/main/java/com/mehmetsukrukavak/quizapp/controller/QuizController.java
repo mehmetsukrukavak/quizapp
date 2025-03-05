@@ -21,6 +21,11 @@ public class QuizController {
     public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title) {
         return quizService.createQuiz(category, numQ, title);
     }
+
+    @PostMapping("createNonCategory")
+    public ResponseEntity<String> createQuizNonCategory(@RequestParam int numQ, @RequestParam String title) {
+        return quizService.createQuizWithoutCategory(numQ, title);
+    }
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Integer id) {
         return quizService.getQuizQuestions(id);
